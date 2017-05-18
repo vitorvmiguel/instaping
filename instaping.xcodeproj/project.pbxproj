@@ -15,6 +15,7 @@
 		3614FB901ECDED7200C3EAB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3614FB8E1ECDED7200C3EAB2 /* LaunchScreen.storyboard */; };
 		3614FB981ECDFC0900C3EAB2 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614FB971ECDFC0900C3EAB2 /* FavoritesViewController.swift */; };
 		3614FB9A1ECDFC3900C3EAB2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614FB991ECDFC3900C3EAB2 /* ProfileViewController.swift */; };
+		3614FB9C1ECE02DD00C3EAB2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614FB9B1ECE02DD00C3EAB2 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		3614FB911ECDED7200C3EAB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3614FB971ECDFC0900C3EAB2 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		3614FB991ECDFC3900C3EAB2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		3614FB9B1ECE02DD00C3EAB2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				3614FB871ECDED7200C3EAB2 /* CameraViewController.swift */,
 				3614FB991ECDFC3900C3EAB2 /* ProfileViewController.swift */,
 				3614FB891ECDED7200C3EAB2 /* Main.storyboard */,
+				3614FB9B1ECE02DD00C3EAB2 /* LoginViewController.swift */,
 				3614FB8C1ECDED7200C3EAB2 /* Assets.xcassets */,
 				3614FB8E1ECDED7200C3EAB2 /* LaunchScreen.storyboard */,
 				3614FB911ECDED7200C3EAB2 /* Info.plist */,
@@ -146,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3614FB9C1ECE02DD00C3EAB2 /* LoginViewController.swift in Sources */,
 				3614FB881ECDED7200C3EAB2 /* CameraViewController.swift in Sources */,
 				3614FB841ECDED7200C3EAB2 /* AppDelegate.swift in Sources */,
 				3614FB9A1ECDFC3900C3EAB2 /* ProfileViewController.swift in Sources */,
