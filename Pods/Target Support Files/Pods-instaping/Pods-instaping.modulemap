@@ -1,0 +1,6 @@
+framework module Pods_instaping {
+  umbrella header "Pods-instaping-umbrella.h"
+
+  export *
+  module * { export * }
+}

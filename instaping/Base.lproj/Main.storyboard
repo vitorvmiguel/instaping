@@ -201,6 +201,9 @@
                                     <constraint firstAttribute="height" constant="30" id="6hH-GN-s3L"/>
                                 </constraints>
                                 <state key="normal" title="Sign In"/>
+                                <connections>
+                                    <action selector="signInClicked:" destination="u9p-mK-gCq" eventType="touchUpInside" id="aa1-6I-jgp"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCa-YC-vVg">
                                 <rect key="frame" x="67.5" y="629" width="240" height="30"/>
@@ -216,6 +219,9 @@
                                     <constraint firstAttribute="height" constant="30" id="XIC-Mc-y5L"/>
                                 </constraints>
                                 <state key="normal" title="not a user? register here"/>
+                                <connections>
+                                    <action selector="signUpClicked:" destination="u9p-mK-gCq" eventType="touchUpInside" id="vR8-s8-qFQ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -243,7 +249,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="49e-Tb-3d3" kind="show" id="BUw-bX-HIK"/>
+                        <outlet property="passwordText" destination="e0f-bz-9uO" id="x2x-Pu-Kdx"/>
+                        <outlet property="usernameText" destination="Kxj-HD-jJo" id="IKF-7B-ec9"/>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="toMainSegue" id="BUw-bX-HIK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="msd-uM-1B0" userLabel="First Responder" sceneMemberID="firstResponder"/>
