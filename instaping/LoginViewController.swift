@@ -36,7 +36,12 @@ class LoginViewController: UIViewController {
                     alert.addAction(ok)
                     self.present(alert, animated: true, completion: nil)
                 } else {
-                    self.performSegue(withIdentifier: "toMainSegue", sender: nil)
+                    
+                    UserDefaults.standard.set(user!.email, forKey: "userSigned")
+                    UserDefaults.standard.synchronize()
+                    
+                    let delegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                    delegate.rememberLogin()
                 }
             })
         }
@@ -53,8 +58,12 @@ class LoginViewController: UIViewController {
                     alert.addAction(ok)
                     self.present(alert, animated: true, completion: nil)
                 } else {
-                    print(user?.email)
-                    print(user?.uid)
+                    
+                    UserDefaults.standard.set(user!.email, forKey: "userSigned")
+                    UserDefaults.standard.synchronize()
+                    
+                    let delegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                    delegate.rememberLogin()
                 }
             })
             

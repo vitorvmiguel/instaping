@@ -72,12 +72,12 @@
 			isa = PBXGroup;
 			children = (
 				3614FB831ECDED7200C3EAB2 /* AppDelegate.swift */,
+				3614FB9B1ECE02DD00C3EAB2 /* LoginViewController.swift */,
 				3614FB851ECDED7200C3EAB2 /* FeedViewController.swift */,
 				3614FB971ECDFC0900C3EAB2 /* FavoritesViewController.swift */,
 				3614FB871ECDED7200C3EAB2 /* CameraViewController.swift */,
 				3614FB991ECDFC3900C3EAB2 /* ProfileViewController.swift */,
 				3614FB891ECDED7200C3EAB2 /* Main.storyboard */,
-				3614FB9B1ECE02DD00C3EAB2 /* LoginViewController.swift */,
 				3614FB8C1ECDED7200C3EAB2 /* Assets.xcassets */,
 				3614FB8E1ECDED7200C3EAB2 /* LaunchScreen.storyboard */,
 				36FD017F1ED4D3B800D52A27 /* GoogleService-Info.plist */,
