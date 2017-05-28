@@ -21,14 +21,29 @@
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uOx-bo-had">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="uOx-bo-had" secondAttribute="trailing" id="0cS-pb-Gbj"/>
+                            <constraint firstItem="uOx-bo-had" firstAttribute="bottom" secondItem="4ug-Mw-9AY" secondAttribute="top" id="LiP-l6-0pi"/>
+                            <constraint firstItem="uOx-bo-had" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="cmc-Uh-cOS"/>
+                            <constraint firstItem="uOx-bo-had" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="oMs-lA-fdc"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Instaping" id="zOI-Wv-Cet"/>
+                    <connections>
+                        <outlet property="feedTableView" destination="uOx-bo-had" id="2ge-7g-TzC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1865" y="-1172"/>
+            <point key="canvasLocation" x="1864.8" y="-1172.5637181409297"/>
         </scene>
         <!--New Post-->
         <scene sceneID="wg7-f3-ORb">
