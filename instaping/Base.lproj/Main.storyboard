@@ -34,7 +34,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="475"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mqp-Ib-ufC">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mqp-Ib-ufC">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Mqp-Ib-ufC" secondAttribute="height" multiplier="1:1" id="PMk-Ir-Qco"/>
@@ -131,10 +131,13 @@
                                     <constraint firstAttribute="width" secondItem="cRC-HV-KYF" secondAttribute="height" multiplier="1:1" id="PMX-Ue-Is0"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Type your subtitle..." translatesAutoresizingMaskIntoConstraints="NO" id="5FM-8u-rpX">
-                                <rect key="frame" x="16" y="447" width="348" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Type your subtitle..." translatesAutoresizingMaskIntoConstraints="NO" id="5FM-8u-rpX">
+                                <rect key="frame" x="13.5" y="447" width="348" height="50"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="348" id="0PC-Nf-5oF"/>
+                                    <constraint firstAttribute="height" constant="50" id="qvm-Uc-jKV"/>
+                                </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="webSearch" keyboardAppearance="alert" returnKeyType="done"/>
@@ -144,8 +147,10 @@
                         <constraints>
                             <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="XDa-ia-8bh" secondAttribute="bottom" constant="8" id="10V-Jh-3In"/>
                             <constraint firstItem="cRC-HV-KYF" firstAttribute="centerX" secondItem="XDa-ia-8bh" secondAttribute="centerX" id="3NH-sC-Jd4"/>
+                            <constraint firstItem="5FM-8u-rpX" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="6q7-R1-JNm"/>
                             <constraint firstItem="XDa-ia-8bh" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="W1J-6C-qsG"/>
                             <constraint firstItem="cRC-HV-KYF" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="bAj-n8-BTt"/>
+                            <constraint firstItem="5FM-8u-rpX" firstAttribute="top" secondItem="cRC-HV-KYF" secondAttribute="bottom" constant="8" id="gxQ-lZ-mlw"/>
                             <constraint firstItem="cRC-HV-KYF" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="wAG-IX-3hJ"/>
                         </constraints>
                     </view>
