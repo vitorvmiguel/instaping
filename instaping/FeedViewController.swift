@@ -7,25 +7,62 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
+import SDWebImage
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var feedTableView: UITableView!
+    
+    var postSubtitleArray = [String]()
+    var postAuthorArray = [String]()
+    var postImageURLArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         feedTableView.delegate = self
         feedTableView.dataSource = self
+        
+        getDataFromServer()
+    }
+    
+    func getDataFromServer() {
+        Database.database().reference().child("users").observe(DataEventType.childAdded, with: { (snapshot) in
+            
+            let values = snapshot.value! as! NSDictionary
+
+            let posts = values["posts"] as! NSDictionary
+            
+            let postIds = posts.allKeys
+            
+            for id in postIds {
+                
+                let singlePost = posts[id] as! NSDictionary
+                
+                self.postAuthorArray.append(singlePost["createdBy"] as! String)
+                self.postSubtitleArray.append(singlePost["subtitle"] as! String)
+                self.postImageURLArray.append(singlePost["image"] as! String)
+                
+                self.feedTableView.reloadData()
+            }
+        })
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return postAuthorArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = "Default cell"
+        let cell = feedTableView.dequeueReusableCell(withIdentifier: "FeedPostCell", for: indexPath) as! FeedTableViewCell
+        
+        cell.postSubtitle.text = postSubtitleArray[indexPath.row]
+        cell.postAuthor.text = postAuthorArray[indexPath.row]
+        cell.postImage.sd_setImage(with: URL(string: self.postImageURLArray[indexPath.row]))
+        
         return cell
     }
 
