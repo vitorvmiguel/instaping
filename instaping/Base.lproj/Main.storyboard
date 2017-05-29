@@ -99,7 +99,7 @@
             </objects>
             <point key="canvasLocation" x="1864.8" y="-1172.5637181409297"/>
         </scene>
-        <!--Camera View Controller-->
+        <!--New Post-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="CameraViewController" customModule="instaping" customModuleProvider="target" sceneMemberID="viewController">
@@ -111,56 +111,67 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfM-0N-omd">
-                                <rect key="frame" x="147" y="508" width="80" height="80"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XDa-ia-8bh">
+                                <rect key="frame" x="150" y="555" width="75" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="0ln-2m-VQx"/>
-                                    <constraint firstAttribute="width" constant="80" id="VKW-MQ-9ML"/>
+                                    <constraint firstAttribute="width" constant="75" id="gSd-GI-3p3"/>
+                                    <constraint firstAttribute="height" constant="55" id="xbL-sq-xle"/>
                                 </constraints>
-                                <state key="normal" image="trigger"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="pluswhite">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <action selector="takePhotoButtonPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="ZWT-FK-Zjx"/>
+                                    <action selector="newPhotoButtonClicked:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="Dpk-5W-gSd"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cRC-HV-KYF">
+                                <rect key="frame" x="0.0" y="64" width="375" height="375"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="cRC-HV-KYF" secondAttribute="height" multiplier="1:1" id="PMX-Ue-Is0"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Type your subtitle..." translatesAutoresizingMaskIntoConstraints="NO" id="5FM-8u-rpX">
+                                <rect key="frame" x="13.5" y="447" width="348" height="50"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="348" id="0PC-Nf-5oF"/>
+                                    <constraint firstAttribute="height" constant="50" id="qvm-Uc-jKV"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="webSearch" keyboardAppearance="alert" returnKeyType="done"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bfM-0N-omd" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="D7l-M1-Sra"/>
-                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="bfM-0N-omd" secondAttribute="bottom" constant="30" id="wAp-rU-2VA"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="XDa-ia-8bh" secondAttribute="bottom" constant="8" id="10V-Jh-3In"/>
+                            <constraint firstItem="cRC-HV-KYF" firstAttribute="centerX" secondItem="XDa-ia-8bh" secondAttribute="centerX" id="3NH-sC-Jd4"/>
+                            <constraint firstItem="5FM-8u-rpX" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="6q7-R1-JNm"/>
+                            <constraint firstItem="XDa-ia-8bh" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="W1J-6C-qsG"/>
+                            <constraint firstItem="cRC-HV-KYF" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="bAj-n8-BTt"/>
+                            <constraint firstItem="5FM-8u-rpX" firstAttribute="top" secondItem="cRC-HV-KYF" secondAttribute="bottom" constant="8" id="gxQ-lZ-mlw"/>
+                            <constraint firstItem="cRC-HV-KYF" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="wAG-IX-3hJ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="9iQ-Gx-cWV"/>
+                    <navigationItem key="navigationItem" title="New Post" id="zhS-VE-vAw">
+                        <barButtonItem key="rightBarButtonItem" title="Upload" id="GtH-Zf-OfD">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="uploadPhotoButtonClicked:" destination="8rJ-Kc-sve" id="qLX-ix-B7o"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="newPhotoButton" destination="XDa-ia-8bh" id="Lcb-Qf-hM6"/>
+                        <outlet property="newPhotoImagePreview" destination="cRC-HV-KYF" id="R3t-8x-fMa"/>
+                        <outlet property="newPhotoSubtitle" destination="5FM-8u-rpX" id="aom-L9-vdV"/>
+                        <outlet property="newPhotoUploadButton" destination="GtH-Zf-OfD" id="cad-lp-K3a"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3295.1999999999998" y="-410.64467766116945"/>
-        </scene>
-        <!--Photo View Controller-->
-        <scene sceneID="H8f-bo-sEY">
-            <objects>
-                <viewController storyboardIdentifier="PhotoViewController" id="nar-ce-UZi" customClass="PhotoViewController" customModule="instaping" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Q2Q-cy-0Mm"/>
-                        <viewControllerLayoutGuide type="bottom" id="Ra1-i1-WYs"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="oR6-1v-9Iq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XVk-r0-yau">
-                                <rect key="frame" x="67" y="255" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="photoImageView" destination="XVk-r0-yau" id="cQf-la-6SG"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TCg-l2-3FN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4097" y="-411"/>
+            <point key="canvasLocation" x="1864.8" y="-412.44377811094455"/>
         </scene>
         <!--Username-->
         <scene sceneID="yW4-va-Myw">
@@ -331,9 +342,9 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
-                        <segue destination="vwl-3o-BAR" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="2md-qE-rxd" kind="relationship" relationship="viewControllers" id="jWf-Lp-Dz1"/>
+                        <segue destination="5np-Rr-1Ib" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="asJ-rj-0JX" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="teo-nV-TmT" kind="relationship" relationship="viewControllers" id="jWf-Lp-Dz1"/>
                         <segue destination="ktN-ad-efU" kind="relationship" relationship="viewControllers" id="MN4-Hl-w36"/>
                     </connections>
                 </tabBarController>
@@ -417,25 +428,6 @@
             </objects>
             <point key="canvasLocation" x="982" y="340"/>
         </scene>
-        <!--Camera-->
-        <scene sceneID="iCI-4g-dQN">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vwl-3o-BAR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Camera" image="camera" id="cPa-gy-q4n"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iVG-iN-aqG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="KIj-KK-NxJ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SkM-O4-oVV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2356" y="-410.64467766116945"/>
-        </scene>
     </scenes>
     <resources>
         <image name="camera" width="25" height="25"/>
@@ -444,6 +436,5 @@
         <image name="main" width="25" height="25"/>
         <image name="pluswhite" width="40" height="40"/>
         <image name="profile" width="25" height="25"/>
-        <image name="trigger" width="80" height="80"/>
     </resources>
 </document>

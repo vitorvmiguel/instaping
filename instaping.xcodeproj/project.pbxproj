@@ -17,7 +17,8 @@
 		3614FB981ECDFC0900C3EAB2 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614FB971ECDFC0900C3EAB2 /* FavoritesViewController.swift */; };
 		3614FB9A1ECDFC3900C3EAB2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614FB991ECDFC3900C3EAB2 /* ProfileViewController.swift */; };
 		3614FB9C1ECE02DD00C3EAB2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614FB9B1ECE02DD00C3EAB2 /* LoginViewController.swift */; };
-		36151CEE1ED71E5C008EE576 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36151CED1ED71E5C008EE576 /* PhotoViewController.swift */; };
+		362BA8381EDC2EB200B3973D /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362BA8371EDC2EB200B3973D /* FeedTableViewCell.swift */; };
+		362BA83A1EDC398F00B3973D /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 362BA8391EDC398F00B3973D /* SDWebImage.framework */; };
 		36FD01801ED4D3B800D52A27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36FD017F1ED4D3B800D52A27 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +35,8 @@
 		3614FB971ECDFC0900C3EAB2 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		3614FB991ECDFC3900C3EAB2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3614FB9B1ECE02DD00C3EAB2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		36151CED1ED71E5C008EE576 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		362BA8371EDC2EB200B3973D /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedTableViewCell.swift; path = ../FeedTableViewCell.swift; sourceTree = "<group>"; };
+		362BA8391EDC398F00B3973D /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "Pods/../build/Debug-iphoneos/SDWebImage/SDWebImage.framework"; sourceTree = "<group>"; };
 		36FD017F1ED4D3B800D52A27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		45C0FFFCD5575D7F513297CA /* Pods-instaping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instaping.release.xcconfig"; path = "Pods/Target Support Files/Pods-instaping/Pods-instaping.release.xcconfig"; sourceTree = "<group>"; };
 		7F4BD982B93707E938628455 /* Pods-instaping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instaping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-instaping/Pods-instaping.debug.xcconfig"; sourceTree = "<group>"; };
@@ -81,7 +83,6 @@
 				3614FB971ECDFC0900C3EAB2 /* FavoritesViewController.swift */,
 				3614FB871ECDED7200C3EAB2 /* CameraViewController.swift */,
 				3614FB991ECDFC3900C3EAB2 /* ProfileViewController.swift */,
-				36151CED1ED71E5C008EE576 /* PhotoViewController.swift */,
 				3614FB891ECDED7200C3EAB2 /* Main.storyboard */,
 				3614FB8C1ECDED7200C3EAB2 /* Assets.xcassets */,
 				3614FB8E1ECDED7200C3EAB2 /* LaunchScreen.storyboard */,
@@ -239,7 +240,6 @@
 				362BA8381EDC2EB200B3973D /* FeedTableViewCell.swift in Sources */,
 				3614FB841ECDED7200C3EAB2 /* AppDelegate.swift in Sources */,
 				3614FB9A1ECDFC3900C3EAB2 /* ProfileViewController.swift in Sources */,
-				36151CEE1ED71E5C008EE576 /* PhotoViewController.swift in Sources */,
 				3614FB981ECDFC0900C3EAB2 /* FavoritesViewController.swift in Sources */,
 				3614FB861ECDED7200C3EAB2 /* FeedViewController.swift in Sources */,
 			);
