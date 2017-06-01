@@ -8,9 +8,11 @@
 
 import UIKit
 import Firebase
+import FirebaseMessaging
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     var window: UIWindow?
 
@@ -26,12 +28,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         rememberLogin()
+        setupNotifications(application: application)
         
         FirebaseApp.configure()
         
         return true
     }
 
+    func setupNotifications(application: UIApplication) {
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { (isAuthorized, error) in
+            print("isAuthorized \(isAuthorized)")
+        }
+        print("token: \(Messaging.messaging().fcmToken ?? "no token foundU")")
+        Messaging.messaging().delegate = self
+        application.registerForRemoteNotifications()
+    }
+    
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        print("token: " + fcmToken)
+        conntectToMessaging()
+    }
+    
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        print("got a notification")
+    }
+    
+    func conntectToMessaging() {
+        Messaging.messaging().shouldEstablishDirectChannel = true
+    }
+
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
