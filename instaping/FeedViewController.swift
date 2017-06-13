@@ -24,6 +24,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
+        imageView.contentMode = .scaleAspectFit
+        let logo = UIImage(named: "instaping_logo.pdf")
+        imageView.image = logo
+        self.navigationItem.titleView = imageView
+        
         feedTableView.delegate = self
         feedTableView.dataSource = self
         
