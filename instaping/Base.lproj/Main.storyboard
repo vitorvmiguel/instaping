@@ -199,10 +199,10 @@
             </objects>
             <point key="canvasLocation" x="1866" y="1056"/>
         </scene>
-        <!--Favorites-->
+        <!--Discover-->
         <scene sceneID="7XA-TF-60W">
             <objects>
-                <viewController id="2md-qE-rxd" customClass="FavoritesViewController" customModule="instaping" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2md-qE-rxd" customClass="DiscoverViewController" customModule="instaping" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WIJ-NT-bmO"/>
                         <viewControllerLayoutGuide type="bottom" id="y0F-P9-Q57"/>
@@ -213,7 +213,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Favorites" id="3uv-A7-icq"/>
+                    <navigationItem key="navigationItem" title="Discover" id="3uv-A7-icq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="syf-rb-msc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -507,11 +507,11 @@
             </objects>
             <point key="canvasLocation" x="982" y="-1172"/>
         </scene>
-        <!--Favorites-->
+        <!--Discover-->
         <scene sceneID="HHg-p7-3vY">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="teo-nV-TmT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorites" image="favorite" id="48z-gk-FTM"/>
+                    <tabBarItem key="tabBarItem" title="Discover" image="search" id="48z-gk-FTM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vSs-H0-Kch">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -529,10 +529,10 @@
     </scenes>
     <resources>
         <image name="camera" width="25" height="25"/>
-        <image name="favorite" width="25" height="25"/>
         <image name="instaping_logo" width="1185" height="548"/>
         <image name="main" width="25" height="25"/>
         <image name="pluswhite" width="40" height="40"/>
         <image name="profile" width="25" height="25"/>
+        <image name="search" width="25" height="25"/>
     </resources>
 </document>
