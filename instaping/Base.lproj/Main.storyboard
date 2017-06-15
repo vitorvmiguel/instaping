@@ -35,22 +35,26 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mqp-Ib-ufC">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                                    <rect key="frame" x="5" y="50" width="365" height="365"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Mqp-Ib-ufC" secondAttribute="height" multiplier="1:1" id="PMk-Ir-Qco"/>
                                                     </constraints>
                                                 </imageView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Subtitle" translatesAutoresizingMaskIntoConstraints="NO" id="Q72-cs-mdF">
-                                                    <rect key="frame" x="8" y="412" width="359" height="55"/>
+                                                    <rect key="frame" x="23" y="423" width="330" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="330" id="JHV-Is-2a8"/>
+                                                        <constraint firstAttribute="height" constant="44" id="MlY-H2-29Y"/>
+                                                    </constraints>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEz-dk-d0V">
-                                                    <rect key="frame" x="22" y="383" width="330" height="21"/>
+                                                    <rect key="frame" x="22" y="21" width="330" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="330" id="PTH-Rx-8hF"/>
-                                                        <constraint firstAttribute="height" constant="21" id="XvE-qV-QcB"/>
+                                                        <constraint firstAttribute="height" constant="21" id="wGp-dy-a9G"/>
+                                                        <constraint firstAttribute="width" constant="330" id="xf2-dB-pOf"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -59,17 +63,13 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="KEz-dk-d0V" firstAttribute="centerX" secondItem="Mqp-Ib-ufC" secondAttribute="centerX" id="2wm-Gs-3qh"/>
-                                                <constraint firstItem="Mqp-Ib-ufC" firstAttribute="centerX" secondItem="Q72-cs-mdF" secondAttribute="centerX" id="EWI-54-7zz"/>
-                                                <constraint firstItem="KEz-dk-d0V" firstAttribute="top" secondItem="Mqp-Ib-ufC" secondAttribute="bottom" constant="8" symbolic="YES" id="P7F-x5-dqh"/>
-                                                <constraint firstItem="Q72-cs-mdF" firstAttribute="top" secondItem="KEz-dk-d0V" secondAttribute="bottom" constant="8" symbolic="YES" id="PNS-gg-hua"/>
-                                                <constraint firstItem="KEz-dk-d0V" firstAttribute="top" secondItem="Mqp-Ib-ufC" secondAttribute="bottom" constant="8" id="RH2-ul-Dot"/>
-                                                <constraint firstItem="KEz-dk-d0V" firstAttribute="centerX" secondItem="JTt-ho-hbl" secondAttribute="centerX" id="ReO-hm-bb8"/>
-                                                <constraint firstItem="KEz-dk-d0V" firstAttribute="centerX" secondItem="Q72-cs-mdF" secondAttribute="centerX" id="Sbi-ig-GRe"/>
-                                                <constraint firstItem="Mqp-Ib-ufC" firstAttribute="top" secondItem="JTt-ho-hbl" secondAttribute="top" id="XQ8-4C-wCP"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Q72-cs-mdF" secondAttribute="bottom" constant="-0.5" id="rym-F5-1eR"/>
-                                                <constraint firstItem="Q72-cs-mdF" firstAttribute="leading" secondItem="JTt-ho-hbl" secondAttribute="leadingMargin" id="tMh-KC-7Hm"/>
-                                                <constraint firstAttribute="bottom" secondItem="KEz-dk-d0V" secondAttribute="bottom" constant="70.5" id="tSD-XY-x4b"/>
+                                                <constraint firstItem="Q72-cs-mdF" firstAttribute="centerX" secondItem="JTt-ho-hbl" secondAttribute="centerX" id="DoG-gj-aev"/>
+                                                <constraint firstItem="KEz-dk-d0V" firstAttribute="top" secondItem="JTt-ho-hbl" secondAttribute="topMargin" constant="13" id="FIj-yW-acm"/>
+                                                <constraint firstItem="Q72-cs-mdF" firstAttribute="top" secondItem="Mqp-Ib-ufC" secondAttribute="bottom" constant="8" id="Hwt-cB-Tsg"/>
+                                                <constraint firstItem="Mqp-Ib-ufC" firstAttribute="centerX" secondItem="JTt-ho-hbl" secondAttribute="centerX" id="J5G-g9-iRG"/>
+                                                <constraint firstItem="Q72-cs-mdF" firstAttribute="bottom" secondItem="JTt-ho-hbl" secondAttribute="bottomMargin" id="b0N-wm-sxU"/>
+                                                <constraint firstItem="Mqp-Ib-ufC" firstAttribute="top" secondItem="KEz-dk-d0V" secondAttribute="bottom" constant="8" id="jcn-Sz-mAe"/>
+                                                <constraint firstItem="KEz-dk-d0V" firstAttribute="centerX" secondItem="JTt-ho-hbl" secondAttribute="centerX" id="ylI-uY-Kej"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -132,11 +132,12 @@
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Type your subtitle..." translatesAutoresizingMaskIntoConstraints="NO" id="5FM-8u-rpX">
-                                <rect key="frame" x="13.5" y="447" width="348" height="50"/>
+                                <rect key="frame" x="13.5" y="447" width="348" height="100"/>
+                                <color key="backgroundColor" white="0.098334418402777776" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="348" id="0PC-Nf-5oF"/>
-                                    <constraint firstAttribute="height" constant="50" id="qvm-Uc-jKV"/>
+                                    <constraint firstAttribute="height" constant="100" id="qvm-Uc-jKV"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -184,8 +185,21 @@
                     <view key="view" contentMode="scaleToFill" id="jzO-zw-f9N">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I76-iN-Of3">
+                                <rect key="frame" x="16" y="72" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="7TI-kx-pID"/>
+                                    <constraint firstAttribute="height" constant="80" id="PAn-cC-gLq"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="I76-iN-Of3" firstAttribute="leading" secondItem="jzO-zw-f9N" secondAttribute="leadingMargin" id="88p-cV-hwK"/>
+                            <constraint firstItem="I76-iN-Of3" firstAttribute="top" secondItem="uQa-ag-rz4" secondAttribute="bottom" constant="8" id="pgv-8H-Jly"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Username" id="G44-aK-EmV">
                         <barButtonItem key="rightBarButtonItem" title="Logout" id="c6f-p8-WdJ">
@@ -194,6 +208,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="profilePicture" destination="I76-iN-Of3" id="aqU-Ga-c5q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mpl-rB-Ok8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
