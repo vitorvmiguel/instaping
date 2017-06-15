@@ -20,7 +20,7 @@
 		362BA8381EDC2EB200B3973D /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362BA8371EDC2EB200B3973D /* FeedTableViewCell.swift */; };
 		362BA83A1EDC398F00B3973D /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 362BA8391EDC398F00B3973D /* SDWebImage.framework */; };
 		3662AD361EF019AB00C77925 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662AD351EF019AB00C77925 /* SignUpViewController.swift */; };
-		36FD01801ED4D3B800D52A27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36FD017F1ED4D3B800D52A27 /* GoogleService-Info.plist */; };
+		36D8226D1EF2A1C500EC1A4E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36D8226C1EF2A1C500EC1A4E /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +40,7 @@
 		362BA8391EDC398F00B3973D /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "Pods/../build/Debug-iphoneos/SDWebImage/SDWebImage.framework"; sourceTree = "<group>"; };
 		3662AD351EF019AB00C77925 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		36B24C6D1EE00BA6002815E2 /* instaping.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = instaping.entitlements; sourceTree = "<group>"; };
-		36FD017F1ED4D3B800D52A27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		36D8226C1EF2A1C500EC1A4E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		45C0FFFCD5575D7F513297CA /* Pods-instaping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instaping.release.xcconfig"; path = "Pods/Target Support Files/Pods-instaping/Pods-instaping.release.xcconfig"; sourceTree = "<group>"; };
 		7F4BD982B93707E938628455 /* Pods-instaping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instaping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-instaping/Pods-instaping.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,7 +91,7 @@
 				3614FB891ECDED7200C3EAB2 /* Main.storyboard */,
 				3614FB8C1ECDED7200C3EAB2 /* Assets.xcassets */,
 				3614FB8E1ECDED7200C3EAB2 /* LaunchScreen.storyboard */,
-				36FD017F1ED4D3B800D52A27 /* GoogleService-Info.plist */,
+				36D8226C1EF2A1C500EC1A4E /* GoogleService-Info.plist */,
 				3614FB911ECDED7200C3EAB2 /* Info.plist */,
 			);
 			path = instaping;
@@ -153,6 +153,9 @@
 						DevelopmentTeam = 5L9XP2PZ59;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -184,7 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3614FB901ECDED7200C3EAB2 /* LaunchScreen.storyboard in Resources */,
-				36FD01801ED4D3B800D52A27 /* GoogleService-Info.plist in Resources */,
+				36D8226D1EF2A1C500EC1A4E /* GoogleService-Info.plist in Resources */,
 				3614FB8D1ECDED7200C3EAB2 /* Assets.xcassets in Resources */,
 				3614FB8B1ECDED7200C3EAB2 /* Main.storyboard in Resources */,
 			);

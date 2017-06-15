@@ -297,12 +297,24 @@
                                     <segue destination="oIE-di-kqF" kind="show" id="okB-bD-CdS"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q1d-K7-qAv">
+                                <rect key="frame" x="23" y="458" width="330" height="35"/>
+                                <color key="backgroundColor" red="0.13881278038024902" green="0.63881528377532959" blue="0.80343705415725708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Continue with Facebook"/>
+                                <connections>
+                                    <action selector="facebookLoginButtonClicked:" destination="u9p-mK-gCq" eventType="touchUpInside" id="QV6-b8-d9b"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="jom-eI-Tb0" firstAttribute="centerX" secondItem="zVi-hB-7uT" secondAttribute="centerX" id="11J-O5-NyA"/>
+                            <constraint firstItem="q1d-K7-qAv" firstAttribute="height" secondItem="WOf-tT-HRr" secondAttribute="height" id="3Fw-Ub-Cgv"/>
                             <constraint firstItem="qjO-MM-5Js" firstAttribute="top" secondItem="WOf-tT-HRr" secondAttribute="bottom" constant="8" id="6jV-Nq-j1O"/>
+                            <constraint firstItem="q1d-K7-qAv" firstAttribute="centerX" secondItem="WOf-tT-HRr" secondAttribute="centerX" id="FPK-ZB-H9N"/>
+                            <constraint firstItem="q1d-K7-qAv" firstAttribute="width" secondItem="WOf-tT-HRr" secondAttribute="width" id="IDy-Kb-5yi"/>
                             <constraint firstItem="dCa-YC-vVg" firstAttribute="width" secondItem="jom-eI-Tb0" secondAttribute="width" id="PlX-JW-oe1"/>
                             <constraint firstItem="dCa-YC-vVg" firstAttribute="centerX" secondItem="zVi-hB-7uT" secondAttribute="centerX" id="RZ0-Kd-lae"/>
                             <constraint firstItem="Kxj-HD-jJo" firstAttribute="top" secondItem="jom-eI-Tb0" secondAttribute="bottom" constant="1" id="V4e-fc-SC2"/>
@@ -313,6 +325,7 @@
                             <constraint firstItem="qjO-MM-5Js" firstAttribute="centerX" secondItem="zVi-hB-7uT" secondAttribute="centerX" id="fbM-b3-AVK"/>
                             <constraint firstItem="Kxj-HD-jJo" firstAttribute="centerX" secondItem="zVi-hB-7uT" secondAttribute="centerX" id="kx0-Ap-a0B"/>
                             <constraint firstItem="jom-eI-Tb0" firstAttribute="top" secondItem="Ndn-TQ-NQU" secondAttribute="bottom" constant="132" id="olo-wU-GI1"/>
+                            <constraint firstItem="q1d-K7-qAv" firstAttribute="top" secondItem="qjO-MM-5Js" secondAttribute="bottom" constant="14" id="qhv-Mc-K5Q"/>
                             <constraint firstItem="e0f-bz-9uO" firstAttribute="centerX" secondItem="zVi-hB-7uT" secondAttribute="centerX" id="r1k-It-XxB"/>
                             <constraint firstItem="bLO-i6-FjK" firstAttribute="top" secondItem="Ndn-TQ-NQU" secondAttribute="bottom" constant="103" id="rZh-tb-eHX"/>
                             <constraint firstItem="e0f-bz-9uO" firstAttribute="top" secondItem="Kxj-HD-jJo" secondAttribute="bottom" constant="10" id="vM7-1G-BN6"/>
@@ -322,6 +335,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="facebookLoginButton" destination="q1d-K7-qAv" id="Fmh-D5-ufL"/>
                         <outlet property="passwordText" destination="e0f-bz-9uO" id="x2x-Pu-Kdx"/>
                         <outlet property="usernameText" destination="Kxj-HD-jJo" id="IKF-7B-ec9"/>
                         <segue destination="49e-Tb-3d3" kind="show" identifier="toMainSegue" id="BUw-bX-HIK"/>
