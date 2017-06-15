@@ -13,9 +13,11 @@ import FirebaseStorage
 import FirebaseDatabase
 import SDWebImage
 
-class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FeedTableViewCellDelegate {
 
     @IBOutlet weak var feedTableView: UITableView!
+    
+    var db: DatabaseReference!
     
     var postSubtitleArray = [String]()
     var postAuthorArray = [String]()
@@ -23,6 +25,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        db = Database.database().reference()
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
         imageView.contentMode = .scaleAspectFit
@@ -37,10 +41,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func getDataFromServer() {
-        Database.database().reference().child("users").observe(DataEventType.childAdded, with: { (snapshot) in
-            
+        db.child("users").queryOrdered(byChild: "timestamp").observe(.childAdded, with: { (snapshot) in
             let values = snapshot.value! as! NSDictionary
-
+            
             let posts = values["posts"] as! NSDictionary
             
             let postIds = posts.allKeys
@@ -70,6 +73,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.postImage.sd_setImage(with: URL(string: self.postImageURLArray[indexPath.row]))
         
         return cell
+    }
+    
+    func feedCellLikeButtonPressed(sender: FeedTableViewCell) {
+        
     }
 
     override func didReceiveMemoryWarning() {

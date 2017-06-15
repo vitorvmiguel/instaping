@@ -9,19 +9,23 @@
 import UIKit
 
 protocol FeedTableViewCellDelegate: class {
-    func feedCellFollowButtonPressed(sender: FeedTableViewCell)
+    func feedCellLikeButtonPressed(sender: FeedTableViewCell)
 }
 
 class FeedTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var postAuthor: UILabel!
-    @IBOutlet weak var postSubtitle: UITextView!
+    @IBOutlet weak var postSubtitle: UILabel!
+    @IBOutlet weak var profilePicture: UIImageView!
     weak var delegate: FeedTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        self.profilePicture.layer.cornerRadius = profilePicture.frame.height/2
+        self.profilePicture.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -30,9 +34,9 @@ class FeedTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBAction func followButtonPressed(_ sender: UIButton) {
+    @IBAction func likeButtonPressed(_ sender: UIButton) {
         if let delegate = delegate {
-            delegate.feedCellFollowButtonPressed(sender: self)
+            delegate.feedCellLikeButtonPressed(sender: self)
         }
         
     }
