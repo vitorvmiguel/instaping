@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import SDWebImage
+import FBSDKLoginKit
 
 class ProfileViewController: UIViewController {
     
@@ -40,6 +41,8 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func logoutButtonClicked(_ sender: UIBarButtonItem) {
+        
+        FBSDKLoginManager().logOut()
         
         UserDefaults.standard.removeObject(forKey: "userSigned")
         UserDefaults.standard.synchronize()

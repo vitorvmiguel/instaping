@@ -11,6 +11,7 @@ import Firebase
 import FirebaseMessaging
 import UserNotifications
 import FBSDKCoreKit
+import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
@@ -96,13 +97,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         let user: String? = UserDefaults.standard.string(forKey: "userSigned")
         
         if user != nil {
-            
-            let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainTabbar = mainStoryboard.instantiateViewController(withIdentifier: "MainTabBar") as! UITabBarController
-            window?.rootViewController = mainTabbar
+            self.skipLoginVC()
         }
     }
-
-
+    
+    func skipLoginVC() {
+        let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainTabbar = mainStoryboard.instantiateViewController(withIdentifier: "MainTabBar") as! UITabBarController
+        window?.rootViewController = mainTabbar
+    }
 }
+
+
+
 
