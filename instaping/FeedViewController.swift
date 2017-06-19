@@ -22,11 +22,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     var postSubtitleArray = [String]()
     var postAuthorArray = [String]()
     var postImageURLArray = [String]()
+    var postUIDArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        db = Database.database().reference()
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
         imageView.contentMode = .scaleAspectFit
@@ -41,7 +40,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func getDataFromServer() {
-        db.child("posts").queryOrdered(byChild: "timestamp").observe(.childAdded, with: { (snapshot) in
+        self.db = Database.database().reference()
+        self.db.child("posts").queryOrdered(byChild: "timestamp").observe(.childAdded, with: { (snapshot) in
             let posts = snapshot.value! as! NSDictionary
             
             let postIds = posts.allKeys
@@ -53,6 +53,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.postAuthorArray.append(singlePost["createdBy"] as! String)
                 self.postSubtitleArray.append(singlePost["subtitle"] as! String)
                 self.postImageURLArray.append(singlePost["image"] as! String)
+                self.postUIDArray.append(id as! String)
                 
                 self.feedTableView.reloadData()
             }
@@ -64,10 +65,29 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        self.db = Database.database().reference()
+        
         let cell = feedTableView.dequeueReusableCell(withIdentifier: "FeedPostCell", for: indexPath) as! FeedTableViewCell
         
         cell.tapAction = { [weak self] (cell) in
             cell.likeButton.setImage(UIImage(named: "liked_like"), for: .normal)
+            
+            let postId = self?.postUIDArray[indexPath.row]
+            let userId = Auth.auth().currentUser?.uid
+            
+            self?.db.child("likedBy").observeSingleEvent(of: .value, with: { (snapshot) in
+                let key = snapshot.key
+                if snapshot.hasChild(postId!) {
+                    let like = ["\(userId!)" : false]
+                    let childUpdates = ["\(key)": like]
+                    self?.db.updateChildValues(childUpdates)
+                } else {
+                    let like = ["\(userId!)" : true]
+                    let childUpdates = ["\(key)": like]
+                    self?.db.updateChildValues(childUpdates)
+                }
+            })
         }
         cell.postSubtitle.text = postSubtitleArray[indexPath.row]
         cell.postAuthor.text = postAuthorArray[indexPath.row]
