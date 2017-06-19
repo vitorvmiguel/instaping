@@ -13,7 +13,7 @@ import FirebaseStorage
 import FirebaseDatabase
 import SDWebImage
 
-class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FeedTableViewCellDelegate {
+class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var feedTableView: UITableView!
     
@@ -68,15 +68,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = feedTableView.dequeueReusableCell(withIdentifier: "FeedPostCell", for: indexPath) as! FeedTableViewCell
         
+        cell.tapAction = { [weak self] (cell) in
+            cell.likeButton.setImage(UIImage(named: "liked_like"), for: .normal)
+        }
         cell.postSubtitle.text = postSubtitleArray[indexPath.row]
         cell.postAuthor.text = postAuthorArray[indexPath.row]
         cell.postImage.sd_setImage(with: URL(string: self.postImageURLArray[indexPath.row]))
         
         return cell
-    }
-    
-    func feedCellLikeButtonPressed(sender: FeedTableViewCell) {
-        
     }
 
     override func didReceiveMemoryWarning() {

@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol FeedTableViewCellDelegate: class {
-    func feedCellLikeButtonPressed(sender: FeedTableViewCell)
-}
-
 class FeedTableViewCell: UITableViewCell {
 
     @IBOutlet weak var likeButton: UIButton!
@@ -19,7 +15,8 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var postAuthor: UILabel!
     @IBOutlet weak var postSubtitle: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
-    weak var delegate: FeedTableViewCellDelegate?
+    
+    var tapAction: ((FeedTableViewCell) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,10 +32,7 @@ class FeedTableViewCell: UITableViewCell {
     }
     
     @IBAction func likeButtonPressed(_ sender: UIButton) {
-        if let delegate = delegate {
-            delegate.feedCellLikeButtonPressed(sender: self)
-        }
-        
+        tapAction?(self)
     }
 
 }
