@@ -37,7 +37,7 @@ class SignUpViewController: UIViewController {
                     self.present(alert, animated: true, completion: nil)
                 } else {
                     
-                    UserDefaults.standard.set(user!.email, forKey: "userSigned")
+                    UserDefaults.standard.set(user!.uid, forKey: "userSigned")
                     UserDefaults.standard.synchronize()
                     
                     let delegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate

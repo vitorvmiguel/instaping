@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+import FirebaseStorage
+import SDWebImage
 
 class DiscoverViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var discoverCollectionView: UICollectionView!
     var customImageFlowLayout: CustomCollectionViewFlowLayout!
-    var images = [UIImage]()
+    var postImageURLArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,29 +38,31 @@ class DiscoverViewController: UIViewController, UICollectionViewDataSource, UICo
     
     func loadimage(){
         
-        images.append(UIImage(named : "test")!)
-        images.append(UIImage(named : "test")!)
-        images.append(UIImage(named : "test")!)
-        images.append(UIImage(named : "test")!)
-        images.append(UIImage(named : "test")!)
-        images.append(UIImage(named : "test")!)
-        images.append(UIImage(named : "test")!)
-        images.append(UIImage(named : "test")!)
-        images.append(UIImage(named : "test")!)
-        images.append(UIImage(named : "test")!)
-        images.append(UIImage(named : "test")!)
-        images.append(UIImage(named : "test")!)
-        self.discoverCollectionView.reloadData()
+        Database.database().reference().child("posts").queryOrdered(byChild: "timestamp").observe(.childAdded, with: { (snapshot) in
+            let posts = snapshot.value! as! NSDictionary
+            
+            let postIds = posts.allKeys
+            
+            for id in postIds {
+                
+                let singlePost = posts[id] as! NSDictionary
+                
+                self.postImageURLArray.append(singlePost["image"] as! String)
+                
+                self.discoverCollectionView.reloadData()
+            }
+        })
+        
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return postImageURLArray.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = discoverCollectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverCell", for: indexPath) as! ImageCollectionViewCell
-        let image = images[indexPath.row]
         
-        cell.DiscoverImageView.image = image
+        cell.DiscoverImageView.sd_setImage(with: URL(string: self.postImageURLArray[indexPath.row]))
         
         return cell
         

@@ -41,10 +41,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func getDataFromServer() {
-        db.child("users").queryOrdered(byChild: "timestamp").observe(.childAdded, with: { (snapshot) in
-            let values = snapshot.value! as! NSDictionary
-            
-            let posts = values["posts"] as! NSDictionary
+        db.child("posts").queryOrdered(byChild: "timestamp").observe(.childAdded, with: { (snapshot) in
+            let posts = snapshot.value! as! NSDictionary
             
             let postIds = posts.allKeys
             

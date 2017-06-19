@@ -46,25 +46,24 @@ class LoginViewController: UIViewController {
                     self.present(alert, animated: true, completion: nil)
                 }
             }
-        }
-        
-        let accessToken = FBSDKAccessToken.current()
-        guard let accessTokenString = accessToken?.tokenString else { return }
-        let credentials = FacebookAuthProvider.credential(withAccessToken: accessTokenString)
-        
-        Auth.auth().signIn(with: credentials) { (user, error) in
-            if error != nil {
-                let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
-                let ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil)
-                alert.addAction(ok)
-                self.present(alert, animated: true, completion: nil)
+            
+            let accessToken = FBSDKAccessToken.current()
+            guard let accessTokenString = accessToken?.tokenString else { return }
+            let credentials = FacebookAuthProvider.credential(withAccessToken: accessTokenString)
+            
+            Auth.auth().signIn(with: credentials) { (user, error) in
+                if error != nil {
+                    let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+                    let ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                UserDefaults.standard.set(user!.uid, forKey: "userSigned")
+                UserDefaults.standard.synchronize()
+                
+                let delegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                delegate.rememberLogin()
             }
-            UserDefaults.standard.set(user!.email, forKey: "userSigned")
-            UserDefaults.standard.synchronize()
-            
-            let delegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
-            delegate.rememberLogin()
-            
         }
     }
     
@@ -79,7 +78,7 @@ class LoginViewController: UIViewController {
                     self.present(alert, animated: true, completion: nil)
                 } else {
                     
-                    UserDefaults.standard.set(user!.email, forKey: "userSigned")
+                    UserDefaults.standard.set(user!.uid, forKey: "userSigned")
                     UserDefaults.standard.synchronize()
                     
                     let delegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
