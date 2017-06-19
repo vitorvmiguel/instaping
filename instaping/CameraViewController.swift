@@ -159,7 +159,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
                     
                     let photoPost = ["image" : imageURL!, "createdBy" : Auth.auth().currentUser!.displayName!, "uuid" : self.uuid, "subtitle" : self.newPhotoSubtitle.text, "timestamp": ServerValue.timestamp()] as [String : Any]
                     
-                    Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!).child("posts").childByAutoId().setValue(photoPost)
+                    Database.database().reference().child("posts").child((Auth.auth().currentUser?.uid)!).childByAutoId().setValue(photoPost)
                     
                     self.newPhotoImagePreview.image = UIImage(named: "")
                     self.newPhotoSubtitle.text = "Type your subtitle..."

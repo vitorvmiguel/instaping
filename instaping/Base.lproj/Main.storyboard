@@ -228,11 +228,48 @@
                                     <constraint firstAttribute="height" constant="80" id="PAn-cC-gLq"/>
                                 </constraints>
                             </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ER5-WO-R24">
+                                <rect key="frame" x="0.0" y="198" width="375" height="420"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5Ft-UK-vEv">
+                                    <size key="itemSize" width="110" height="110"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UserCell" id="4Bi-uR-xTX" customClass="ImageCollectionViewCell" customModule="instaping" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vsI-pJ-vbM">
+                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <connections>
+                                            <outlet property="CellImageView" destination="vsI-pJ-vbM" id="UGB-T9-PGy"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="XLS-0m-OL1" id="8PR-gd-f4f"/>
+                                    <outlet property="delegate" destination="XLS-0m-OL1" id="YeS-hZ-qiS"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="I76-iN-Of3" firstAttribute="leading" secondItem="jzO-zw-f9N" secondAttribute="leadingMargin" id="88p-cV-hwK"/>
+                            <constraint firstItem="ER5-WO-R24" firstAttribute="top" secondItem="I76-iN-Of3" secondAttribute="bottom" constant="46" id="A0E-AT-sID"/>
+                            <constraint firstItem="ER5-WO-R24" firstAttribute="leading" secondItem="jzO-zw-f9N" secondAttribute="leading" id="ViT-9c-3tG"/>
+                            <constraint firstAttribute="trailing" secondItem="ER5-WO-R24" secondAttribute="trailing" id="ZWl-95-s0l"/>
+                            <constraint firstItem="ER5-WO-R24" firstAttribute="bottom" secondItem="zJl-fd-LkH" secondAttribute="top" id="oxk-Fg-5TS"/>
                             <constraint firstItem="I76-iN-Of3" firstAttribute="top" secondItem="uQa-ag-rz4" secondAttribute="bottom" constant="8" id="pgv-8H-Jly"/>
                         </constraints>
                     </view>
@@ -245,11 +282,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="profilePicture" destination="I76-iN-Of3" id="aqU-Ga-c5q"/>
+                        <outlet property="userImageCollection" destination="ER5-WO-R24" id="fOX-WI-zV1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mpl-rB-Ok8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1866" y="1056"/>
+            <point key="canvasLocation" x="1864.8" y="1055.6221889055473"/>
         </scene>
         <!--Discover-->
         <scene sceneID="7XA-TF-60W">
@@ -292,7 +330,7 @@
                                             <constraint firstAttribute="trailing" secondItem="90v-Ce-uhg" secondAttribute="trailing" id="yzQ-ab-7Fo"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="DiscoverImageView" destination="90v-Ce-uhg" id="m2M-fS-rL6"/>
+                                            <outlet property="CellImageView" destination="90v-Ce-uhg" id="L6o-1h-Ygu"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

@@ -24,7 +24,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDataSource, UICo
         discoverCollectionView.dataSource = self
         discoverCollectionView.delegate = self
         
-        loadimage()
+        loadImage()
         
         customImageFlowLayout = CustomCollectionViewFlowLayout()
         discoverCollectionView.collectionViewLayout = customImageFlowLayout
@@ -36,7 +36,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDataSource, UICo
         // Dispose of any resources that can be recreated.
     }
     
-    func loadimage(){
+    func loadImage(){
         
         Database.database().reference().child("posts").queryOrdered(byChild: "timestamp").observe(.childAdded, with: { (snapshot) in
             let posts = snapshot.value! as! NSDictionary
@@ -62,7 +62,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = discoverCollectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverCell", for: indexPath) as! ImageCollectionViewCell
         
-        cell.DiscoverImageView.sd_setImage(with: URL(string: self.postImageURLArray[indexPath.row]))
+        cell.CellImageView.sd_setImage(with: URL(string: self.postImageURLArray[indexPath.row]))
         
         return cell
         

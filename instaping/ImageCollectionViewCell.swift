@@ -10,11 +10,11 @@ import UIKit
 
 class ImageCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var DiscoverImageView: UIImageView!
+    @IBOutlet weak var CellImageView: UIImageView!
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.DiscoverImageView.image = nil
+        self.CellImageView.image = nil
     }
     
 }
