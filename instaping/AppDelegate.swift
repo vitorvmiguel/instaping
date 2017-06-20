@@ -14,6 +14,8 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import IQKeyboardManagerSwift
 
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
@@ -24,10 +26,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         
         UINavigationBar.appearance().barTintColor = UIColor.black
         UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().setBackgroundImage(UIColor.black.navBorder(), for: .default)
+        UINavigationBar.appearance().shadowImage = UIColor(red: 0/255, green: 162/255, blue: 199/255, alpha: 1.0).navBorder()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         UIApplication.shared.statusBarStyle = .lightContent
+        
         UITabBar.appearance().barTintColor = UIColor.black
-        UITabBar.appearance().tintColor = UIColor.white
+//        UITabBar.appearance().tintColor = UIColor.white
+        UITabBar.appearance().backgroundImage = UIImage.tabBorder(color: .black)
+        UITabBar.appearance().shadowImage = UIImage.tabBorder(color: UIColor(red: 255/255, green: 69/255, blue: 174/255, alpha: 1.0))
         
         IQKeyboardManager.sharedManager().enable = true
         
@@ -107,6 +114,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let mainTabbar = mainStoryboard.instantiateViewController(withIdentifier: "MainTabBar") as! UITabBarController
         window?.rootViewController = mainTabbar
+    }
+    
+}
+
+extension UIImage {
+    class func tabBorder(color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0.0, y: 0.0, width: 1.0, height: 2.0)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+        color.setFill()
+        UIRectFill(rect)
+        let image : UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return image
+    }
+}
+
+extension UIColor {
+    func navBorder() -> UIImage {
+        UIGraphicsBeginImageContext(CGSize(width: 1.0, height: 2.0))
+        let ctx = UIGraphicsGetCurrentContext()
+        self.setFill()
+        ctx?.fill(CGRect(x: 0.0, y: 0.0, width: 1.0, height: 2.0))
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
     }
 }
 

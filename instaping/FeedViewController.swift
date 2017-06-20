@@ -27,7 +27,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 52, height: 52))
         imageView.contentMode = .scaleAspectFit
         let logo = UIImage(named: "instaping_logo.pdf")
         imageView.image = logo

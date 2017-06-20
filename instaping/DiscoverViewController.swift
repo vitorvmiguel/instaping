@@ -12,15 +12,18 @@ import FirebaseDatabase
 import FirebaseStorage
 import SDWebImage
 
-class DiscoverViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class DiscoverViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var discoverCollectionView: UICollectionView!
+    @IBOutlet weak var searchBar: UISearchBar!
     var customImageFlowLayout: CustomCollectionViewFlowLayout!
     var postImageURLArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        searchBar.delegate = self
+        
         discoverCollectionView.dataSource = self
         discoverCollectionView.delegate = self
         
@@ -29,8 +32,31 @@ class DiscoverViewController: UIViewController, UICollectionViewDataSource, UICo
         customImageFlowLayout = CustomCollectionViewFlowLayout()
         discoverCollectionView.collectionViewLayout = customImageFlowLayout
         discoverCollectionView.backgroundColor = .black
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DiscoverViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
 
+    func dismissKeyboard() {
+        view.endEditing(true)
+        searchBar.setShowsCancelButton(false, animated: true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchBar.showsCancelButton = true
+        //TODO search
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = nil
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.endEditing(true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

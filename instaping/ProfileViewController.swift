@@ -16,6 +16,11 @@ import FBSDKLoginKit
 class ProfileViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var profilePicture: UIImageView!
+    
+    @IBOutlet weak var numberOfPictures: UILabel!
+    @IBOutlet weak var numberOfFollowing: UILabel!
+    @IBOutlet weak var numberOfFollowers: UILabel!
+    
     var photoURL : URL?
     var displayName : String?
     var userUid : String?
