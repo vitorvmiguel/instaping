@@ -71,21 +71,18 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = feedTableView.dequeueReusableCell(withIdentifier: "FeedPostCell", for: indexPath) as! FeedTableViewCell
         
         cell.tapAction = { [weak self] (cell) in
-            cell.likeButton.setImage(UIImage(named: "liked_like"), for: .normal)
             
             let postId = self?.postUIDArray[indexPath.row]
             let userId = Auth.auth().currentUser?.uid
             
-            self?.db.child("likedBy").observeSingleEvent(of: .value, with: { (snapshot) in
-                let key = snapshot.key
-                if snapshot.hasChild(postId!) {
-                    let like = ["\(userId!)" : false]
-                    let childUpdates = ["\(key)": like]
-                    self?.db.updateChildValues(childUpdates)
+            self?.db.child("likedBy").child(postId!).observeSingleEvent(of: .value, with: { (snapshot) in
+                if snapshot.hasChild(userId!) {
+                    self?.db.child("likedBy").child(postId!).child(userId!).removeValue()
+                    cell.likeButton.setImage(UIImage(named: "like_white"), for: .normal)
                 } else {
                     let like = ["\(userId!)" : true]
-                    let childUpdates = ["\(key)": like]
-                    self?.db.updateChildValues(childUpdates)
+                    self?.db.child("likedBy").child(postId!).updateChildValues(like)
+                    cell.likeButton.setImage(UIImage(named: "liked_like"), for: .normal)
                 }
             })
         }
