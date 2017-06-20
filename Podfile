@@ -15,6 +15,7 @@ pod 'FacebookCore'
 pod 'FacebookLogin'
 pod 'FacebookShare'
 pod 'SDWebImage/WebP'
+pod 'IQKeyboardManagerSwift'
 
   # Pods for instaping
 

@@ -12,6 +12,7 @@ import FirebaseMessaging
 import UserNotifications
 import FBSDKCoreKit
 import FBSDKLoginKit
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
@@ -28,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         UITabBar.appearance().barTintColor = UIColor.black
         UITabBar.appearance().tintColor = UIColor.white
         
+        IQKeyboardManager.sharedManager().enable = true
         
         rememberLogin()
         setupNotifications(application: application)
