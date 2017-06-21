@@ -30,39 +30,29 @@ class LoginViewController: UIViewController {
     @IBAction func facebookLoginButtonClicked(_ sender: Any) {
         
         FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: self) { (result, error) in
-            if error != nil {
-                let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
-                let ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil)
-                alert.addAction(ok)
-                self.present(alert, animated: true, completion: nil)
-            }
-            FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start {
-                (connection, result, error) in
-                
-                if error != nil {
-                    let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
-                    let ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil)
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
+            if (error != nil || (result?.isCancelled)!) {
+                self.alertError(error: error!)
+            } else {
+                let credential = FacebookAuthProvider.credential(withAccessToken: (result?.token.tokenString)!)
+                Auth.auth().signIn(with: credential) { (user, error) in
+                    if (error != nil) {
+                        self.alertError(error: error!)
+                    }
+                    
+                    UserDefaults.standard.set(user!.uid, forKey: "userSigned")
+                    UserDefaults.standard.synchronize()
+                    
+                    let delegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                    delegate.rememberLogin()
                 }
             }
-            
-            let accessToken = FBSDKAccessToken.current()
-            guard let accessTokenString = accessToken?.tokenString else { return }
-            let credentials = FacebookAuthProvider.credential(withAccessToken: accessTokenString)
-            
-            Auth.auth().signIn(with: credentials) { (user, error) in
-                if error != nil {
-                    let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
-                    let ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil)
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
-                }
-                UserDefaults.standard.set(user!.uid, forKey: "userSigned")
-                UserDefaults.standard.synchronize()
-                
-                let delegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
-                delegate.rememberLogin()
+        }
+        
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if (user != nil) {
+                let uid = user?.uid as String!
+                let photoURL : String = (user?.photoURL?.absoluteString)!
+                Database.database().reference().child("users").child(uid!).setValue(["name": user?.displayName!, "photoURL": photoURL])
             }
         }
     }
@@ -72,10 +62,7 @@ class LoginViewController: UIViewController {
         if usernameText.text != "" && passwordText.text != "" {
             Auth.auth().signIn(withEmail: usernameText.text!, password: passwordText.text!, completion: { (user, error) in
                 if error != nil {
-                    let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
-                    let ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil)
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
+                    self.alertError(error: error!)
                 } else {
                     
                     UserDefaults.standard.set(user!.uid, forKey: "userSigned")
@@ -87,6 +74,13 @@ class LoginViewController: UIViewController {
             })
         }
         
+    }
+    
+    func alertError(error: Error) {
+        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+        let ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
     }
 
 
