@@ -27,6 +27,11 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.viewDidLoad()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CameraViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
+        if newPhotoImagePreview.image == nil && newPhotoSubtitle.text == "Type your subtitle..." {
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+        }
     }
     
     func dismissKeyboard() {
@@ -89,17 +94,11 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
                         }
                     })
                 }
-
-                
-                
             }
             alertController.addAction(cameraRollAction)
         }
         
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        
         
         alertController.addAction(cancelAction)
         
@@ -156,20 +155,20 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
                     self.present(alert, animated: true, completion: nil)
                 } else {
                     let imageURL = metadata?.downloadURL()?.absoluteString
+                    let uid = Auth.auth().currentUser?.uid
                     
-                    let photoPost = ["image" : imageURL!, "createdBy" : Auth.auth().currentUser!.displayName!, "uuid" : self.uuid, "subtitle" : self.newPhotoSubtitle.text, "timestamp": ServerValue.timestamp()] as [String : Any]
+                    let photoPost = ["image" : imageURL!, "createdBy" : Auth.auth().currentUser!.displayName!, "userUid" : uid!, "storageUUID": self.uuid, "subtitle" : self.newPhotoSubtitle.text, "timestamp": ServerValue.timestamp()] as [String : Any]
                     
-                    Database.database().reference().child("posts").child((Auth.auth().currentUser?.uid)!).childByAutoId().setValue(photoPost)
+                    Database.database().reference().child("posts").childByAutoId().setValue(photoPost)
                     
                     self.newPhotoImagePreview.image = UIImage(named: "")
                     self.newPhotoSubtitle.text = "Type your subtitle..."
-                    self.newPhotoUploadButton.isEnabled = true
+                    self.newPhotoUploadButton.isEnabled = false
                     self.tabBarController?.selectedIndex = 0
                     
                 }
             })
         }
-        
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -181,8 +180,9 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         newPhotoImagePreview.contentMode = .scaleAspectFill
         newPhotoImagePreview.image = chosenImage
         
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+        
         dismiss(animated: true, completion: nil)
     }
-    
-
 }
