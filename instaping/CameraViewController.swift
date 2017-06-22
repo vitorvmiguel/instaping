@@ -20,8 +20,11 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var newPhotoButton: UIButton!
     @IBOutlet weak var newPhotoSubtitle: UITextView!    
     @IBOutlet weak var newPhotoUploadButton: UIBarButtonItem!
+    
     var imagePicker: UIImagePickerController!
     var uuid = NSUUID().uuidString
+    var refPosts : DatabaseReference!
+    var refLikes : DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +35,9 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
             self.navigationItem.rightBarButtonItem?.isEnabled = false
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
         }
+        
+        self.refPosts = Database.database().reference().child("posts")
+        self.refLikes = Database.database().reference().child("likedBy")
     }
     
     func dismissKeyboard() {
@@ -156,10 +162,12 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
                 } else {
                     let imageURL = metadata?.downloadURL()?.absoluteString
                     let uid = Auth.auth().currentUser?.uid
+                    let key = self.refPosts.childByAutoId().key
                     
-                    let photoPost = ["image" : imageURL!, "createdBy" : Auth.auth().currentUser!.displayName!, "userUid" : uid!, "storageUUID": self.uuid, "subtitle" : self.newPhotoSubtitle.text, "timestamp": ServerValue.timestamp()] as [String : Any]
+                    let photoPost = ["id" : key,"image" : imageURL!, "createdBy" : Auth.auth().currentUser!.displayName!, "userUid" : uid!, "storageUUID": self.uuid, "subtitle" : self.newPhotoSubtitle.text, "timestamp": ServerValue.timestamp()] as [String : Any]
                     
-                    Database.database().reference().child("posts").childByAutoId().setValue(photoPost)
+                    self.refPosts.child(key).setValue(photoPost)
+                    self.refLikes.child(key).setValue([key : key])
                     
                     self.newPhotoImagePreview.image = UIImage(named: "")
                     self.newPhotoSubtitle.text = "Type your subtitle..."

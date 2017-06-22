@@ -17,15 +17,19 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var feedTableView: UITableView!
     
-    var db: DatabaseReference!
-    
     var postSubtitleArray = [String]()
     var postAuthorArray = [String]()
     var postImageURLArray = [String]()
     var postUIDArray = [String]()
     
+    var posts = [PostModel]()
+    
+    var ref : DatabaseReference!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.ref = Database.database().reference()
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 52, height: 52))
         imageView.contentMode = .scaleAspectFit
@@ -40,56 +44,63 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func getDataFromServer() {
-        self.db = Database.database().reference()
-        self.db.child("posts").queryOrdered(byChild: "timestamp").observe(.childAdded, with: { (snapshot) in
-            let posts = snapshot.value! as! NSDictionary
-            
-            let postIds = posts.allKeys
-            
-            for id in postIds {
+        self.ref?.child("posts").queryOrdered(byChild: "timestamp").observe(.value, with: { (snapshot) in
+            if snapshot.childrenCount > 0 {
+                self.posts.removeAll()
                 
-                let singlePost = posts[id] as! NSDictionary
-                
-                self.postAuthorArray.append(singlePost["createdBy"] as! String)
-                self.postSubtitleArray.append(singlePost["subtitle"] as! String)
-                self.postImageURLArray.append(singlePost["image"] as! String)
-                self.postUIDArray.append(id as! String)
+                for posts in snapshot.children.allObjects as! [DataSnapshot] {
+                    let postObject = posts.value as! [String : AnyObject]
+                    let id = postObject["id"]
+                    let createdBy = postObject["createdBy"]
+                    let image = postObject["image"]
+                    let storageUUID = postObject["storageUUID"]
+                    let subtitle = postObject["subtitle"]
+                    let timestamp = postObject["timestamp"]
+                    let userUid = postObject["userUid"]
+                    
+                    let post = PostModel(id: id as? String, createdBy: createdBy as? String, image: image as? String, storageUUID: storageUUID as? String, subtitle: subtitle as? String, timestamp: timestamp as? String, userUid: userUid as? String)
+                    
+                    self.posts.append(post)
+                    self.posts.reverse()
+                }
                 
                 self.feedTableView.reloadData()
             }
         })
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postAuthorArray.count
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        self.db = Database.database().reference()
+        let post : PostModel
+        post = posts[indexPath.row]
         
         let cell = feedTableView.dequeueReusableCell(withIdentifier: "FeedPostCell", for: indexPath) as! FeedTableViewCell
         
+        cell.postAuthor.text = post.createdBy
+        cell.postSubtitle.text = post.subtitle
+        cell.postImage.sd_setImage(with: URL(string: post.image!))
+        
         cell.tapAction = { [weak self] (cell) in
             
-            let postId = self?.postUIDArray[indexPath.row]
-            let userId = Auth.auth().currentUser?.uid
+            let postId = post.id
+            let userId = post.userUid
             
-            self?.db.child("likedBy").child(postId!).observeSingleEvent(of: .value, with: { (snapshot) in
+            self!.ref!.child("likedBy").child(postId!).observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.hasChild(userId!) {
-                    self?.db.child("likedBy").child(postId!).child(userId!).removeValue()
+                    self!.ref!.child("likedBy").child(postId!).child(userId!).removeValue()
                     cell.likeButton.setImage(UIImage(named: "like_white"), for: .normal)
                 } else {
-                    let like = ["\(userId!)" : true]
-                    self?.db.child("likedBy").child(postId!).updateChildValues(like)
+                    let like = ["userId" : userId!]
+                    self!.ref!.child("likedBy").child(postId!).updateChildValues(like)
                     cell.likeButton.setImage(UIImage(named: "liked_like"), for: .normal)
                 }
             })
         }
-        cell.postSubtitle.text = postSubtitleArray[indexPath.row]
-        cell.postAuthor.text = postAuthorArray[indexPath.row]
-        cell.postImage.sd_setImage(with: URL(string: self.postImageURLArray[indexPath.row]))
-        
         return cell
     }
 

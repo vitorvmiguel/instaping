@@ -66,18 +66,18 @@
                                                         <constraint firstAttribute="width" secondItem="a8B-BO-NFi" secondAttribute="height" multiplier="1:1" id="cFE-uo-0dE"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 likes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lmb-OM-wsT">
-                                                    <rect key="frame" x="55" y="433" width="300" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 likes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lmb-OM-wsT">
+                                                    <rect key="frame" x="55" y="433" width="300" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="300" id="ksI-Kg-P05"/>
-                                                        <constraint firstAttribute="height" constant="21" id="yQL-x3-xW1"/>
+                                                        <constraint firstAttribute="height" constant="25" id="yQL-x3-xW1"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAf-18-wtL">
-                                                    <rect key="frame" x="55" y="455" width="300" height="42"/>
+                                                    <rect key="frame" x="55" y="459" width="300" height="42"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="42" id="lV7-ek-I0N"/>
                                                     </constraints>
@@ -266,7 +266,7 @@
                                     <outlet property="delegate" destination="XLS-0m-OL1" id="YeS-hZ-qiS"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5u-l8-DVx">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5u-l8-DVx">
                                 <rect key="frame" x="132" y="97" width="65" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" id="ATl-qc-L6B"/>
@@ -296,7 +296,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLB-Ml-QY0">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLB-Ml-QY0">
                                 <rect key="frame" x="294" y="97" width="65" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="BCv-gZ-Jez"/>
@@ -316,7 +316,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WqJ-Im-3Ff">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WqJ-Im-3Ff">
                                 <rect key="frame" x="213" y="97" width="65" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="XEq-NN-X48"/>

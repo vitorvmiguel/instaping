@@ -20,6 +20,7 @@
 		362BA8381EDC2EB200B3973D /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362BA8371EDC2EB200B3973D /* FeedTableViewCell.swift */; };
 		362BA83A1EDC398F00B3973D /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 362BA8391EDC398F00B3973D /* SDWebImage.framework */; };
 		3662AD361EF019AB00C77925 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662AD351EF019AB00C77925 /* SignUpViewController.swift */; };
+		369FCC4C1EFB2447007ED07B /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369FCC4B1EFB2447007ED07B /* PostModel.swift */; };
 		36D4CCA11EF7E073005AC121 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D4CCA01EF7E073005AC121 /* ImageCollectionViewCell.swift */; };
 		36D4CCA31EF7EBB2005AC121 /* CustomCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D4CCA21EF7EBB2005AC121 /* CustomCollectionViewFlowLayout.swift */; };
 		36D8226D1EF2A1C500EC1A4E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36D8226C1EF2A1C500EC1A4E /* GoogleService-Info.plist */; };
@@ -41,6 +42,7 @@
 		362BA8371EDC2EB200B3973D /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedTableViewCell.swift; path = ../FeedTableViewCell.swift; sourceTree = "<group>"; };
 		362BA8391EDC398F00B3973D /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "Pods/../build/Debug-iphoneos/SDWebImage/SDWebImage.framework"; sourceTree = "<group>"; };
 		3662AD351EF019AB00C77925 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		369FCC4B1EFB2447007ED07B /* PostModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		36B24C6D1EE00BA6002815E2 /* instaping.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = instaping.entitlements; sourceTree = "<group>"; };
 		36D4CCA01EF7E073005AC121 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		36D4CCA21EF7EBB2005AC121 /* CustomCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				36D4CCA21EF7EBB2005AC121 /* CustomCollectionViewFlowLayout.swift */,
 				3614FB871ECDED7200C3EAB2 /* CameraViewController.swift */,
 				3614FB991ECDFC3900C3EAB2 /* ProfileViewController.swift */,
+				369FCC4B1EFB2447007ED07B /* PostModel.swift */,
 				3614FB891ECDED7200C3EAB2 /* Main.storyboard */,
 				3614FB8C1ECDED7200C3EAB2 /* Assets.xcassets */,
 				3614FB8E1ECDED7200C3EAB2 /* LaunchScreen.storyboard */,
@@ -264,6 +267,7 @@
 				36D4CCA11EF7E073005AC121 /* ImageCollectionViewCell.swift in Sources */,
 				3614FB981ECDFC0900C3EAB2 /* DiscoverViewController.swift in Sources */,
 				3614FB861ECDED7200C3EAB2 /* FeedViewController.swift in Sources */,
+				369FCC4C1EFB2447007ED07B /* PostModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

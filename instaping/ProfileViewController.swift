@@ -27,10 +27,14 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     
     @IBOutlet weak var userImageCollection: UICollectionView!
     var customImageFlowLayout: CustomCollectionViewFlowLayout!
-    var postImageURLArray = [String]()
+    
+    var ref : DatabaseReference!
+    var posts = [PostModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.ref = Database.database().reference()
 
         let user = Auth.auth().currentUser
         if let user = user {
@@ -55,33 +59,42 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func loadImage(){
-        
-        Database.database().reference().child("posts").queryOrdered(byChild: "timestamp").observe(.childAdded, with: { (snapshot) in
-            let posts = snapshot.value! as! NSDictionary
-            
-            let postIds = posts.allKeys
-            
-            for id in postIds {
+        self.ref?.child("posts").queryOrdered(byChild: "timestamp").observe(.value, with: { (snapshot) in
+            if snapshot.childrenCount > 0 {
+                self.posts.removeAll()
                 
-                let singlePost = posts[id] as! NSDictionary
-                
-                self.postImageURLArray.append(singlePost["image"] as! String)
-                
+                for posts in snapshot.children.allObjects as! [DataSnapshot] {
+                    let postObject = posts.value as! [String : AnyObject]
+                    let id = postObject["id"]
+                    let createdBy = postObject["createdBy"]
+                    let image = postObject["image"]
+                    let storageUUID = postObject["storageUUID"]
+                    let subtitle = postObject["subtitle"]
+                    let timestamp = postObject["timestamp"]
+                    let userUid = postObject["userUid"]
+                    
+                    let post = PostModel(id: id as? String, createdBy: createdBy as? String, image: image as? String, storageUUID: storageUUID as? String, subtitle: subtitle as? String, timestamp: timestamp as? String, userUid: userUid as? String)
+                    
+                    self.posts.append(post)
+                    self.posts.reverse()
+                }
+                self.numberOfPictures.text = String(self.posts.count)
                 self.userImageCollection.reloadData()
             }
         })
-        
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return postImageURLArray.count
+        return posts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = userImageCollection.dequeueReusableCell(withReuseIdentifier: "UserCell", for: indexPath) as! ImageCollectionViewCell
         
-        cell.CellImageView.sd_setImage(with: URL(string: self.postImageURLArray[indexPath.row]))
+        let post : PostModel
+        post = posts[indexPath.row]
+        
+        cell.CellImageView.sd_setImage(with: URL(string: post.image!))
         
         return cell
     }

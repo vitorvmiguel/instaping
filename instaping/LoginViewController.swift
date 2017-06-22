@@ -50,9 +50,12 @@ class LoginViewController: UIViewController {
         
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if (user != nil) {
+                let ref : DatabaseReference = Database.database().reference()
                 let uid = user?.uid as String!
                 let photoURL : String = (user?.photoURL?.absoluteString)!
-                Database.database().reference().child("users").child(uid!).setValue(["name": user?.displayName!, "photoURL": photoURL])
+                ref.child("users").child(uid!).setValue(["name": user?.displayName!, "photoURL": photoURL])
+                ref.child("followedBy").child(uid!).setValue([uid! : uid!])
+                ref.child("follows").child(uid!).setValue([uid! : uid!])
             }
         }
     }
