@@ -67,6 +67,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                             for likes in snapshot.children.allObjects as! [DataSnapshot] {
                                 likesArray.append(likes.key)
                             }
+                            post.likesArray = likesArray
                             post.numberOfLikes = String(likesArray.count)
                             requestGroup.leave()
                         })
@@ -100,6 +101,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let userUid = Auth.auth().currentUser?.uid
         let post : PostModel
         post = posts[indexPath.row]
         
@@ -108,6 +110,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.postAuthor.text = post.createdBy
         cell.postSubtitle.text = post.subtitle
         cell.postImage.sd_setImage(with: URL(string: post.image!))
+        if((post.likesArray.index(of: userUid!)) != nil) {
+            cell.likeButton.setImage(UIImage(named: "liked_like"), for: .normal)
+        }
         cell.likesCounter.text = "\(post.numberOfLikes ?? "0") likes"
         
         cell.tapAction = { [weak self] (cell) in
@@ -118,9 +123,15 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             self!.ref!.child("likedBy").child(postId!).observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.hasChild(userId!) {
                     self!.ref!.child("likedBy").child(postId!).child(userId!).removeValue()
+                    post.likesArray.remove(at: post.likesArray.index(of: userUid!)!)
+                    post.numberOfLikes = String(post.likesArray.count)
+                    cell.likesCounter.text = "\(post.numberOfLikes ?? "0") likes"
                     cell.likeButton.setImage(UIImage(named: "like_white"), for: .normal)
                 } else {
                     self!.ref!.child("likedBy").child(postId!).updateChildValues([userId! : true])
+                    post.likesArray.append(userUid!)
+                    post.numberOfLikes = String(post.likesArray.count)
+                    cell.likesCounter.text = "\(post.numberOfLikes ?? "0") likes"
                     cell.likeButton.setImage(UIImage(named: "liked_like"), for: .normal)
                 }
             })
