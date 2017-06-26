@@ -17,19 +17,17 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var feedTableView: UITableView!
     
-    var postSubtitleArray = [String]()
-    var postAuthorArray = [String]()
-    var postImageURLArray = [String]()
-    var postUIDArray = [String]()
+    var userId : String!
     
     var posts = [PostModel]()
-    
+
     var ref : DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.ref = Database.database().reference()
+        self.userId = Auth.auth().currentUser?.uid
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 52, height: 52))
         imageView.contentMode = .scaleAspectFit
@@ -40,36 +38,62 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         feedTableView.delegate = self
         feedTableView.dataSource = self
         
-        getDataFromServer()
+        getPostsFromServer()
+        
     }
     
-    func getDataFromServer() {
-        self.ref?.child("posts").queryOrdered(byChild: "timestamp").observe(.value, with: { (snapshot) in
-            if snapshot.childrenCount > 0 {
-                self.posts.removeAll()
-                
-                for posts in snapshot.children.allObjects as! [DataSnapshot] {
-                    let postObject = posts.value as! [String : AnyObject]
-                    let id = postObject["id"]
-                    let createdBy = postObject["createdBy"]
-                    let image = postObject["image"]
-                    let storageUUID = postObject["storageUUID"]
-                    let subtitle = postObject["subtitle"]
-                    let timestamp = postObject["timestamp"]
-                    let userUid = postObject["userUid"]
+    func getPostsFromServer() {
+        let dispatchQueue = DispatchQueue(label: "fbQ")
+        dispatchQueue.async {
+
+            let requestGroup = DispatchGroup()
+            requestGroup.enter()
+            self.ref?.child("posts").queryOrdered(byChild: "timestamp").observe(.value, with: { (snapshot) in
+                if snapshot.childrenCount > 0 {
+                    self.posts.removeAll()
                     
-                    let post = PostModel(id: id as? String, createdBy: createdBy as? String, image: image as? String, storageUUID: storageUUID as? String, subtitle: subtitle as? String, timestamp: timestamp as? String, userUid: userUid as? String)
+                    for posts in snapshot.children.allObjects as! [DataSnapshot] {
+                        let postObject = posts.value as! [String : AnyObject]
+                        let post = self.createPost(postObject: postObject)
+                        
+                        self.posts.append(post)
+                        self.posts.reverse()
+                    }
+                    for post in self.posts {
+                        var likesArray = [String]()
+                        requestGroup.enter()
+                        self.ref?.child("likedBy").child(post.id!).observeSingleEvent(of: .value, with: { (snapshot) in
+                            likesArray.removeAll()
+                            for likes in snapshot.children.allObjects as! [DataSnapshot] {
+                                likesArray.append(likes.key)
+                            }
+                            post.numberOfLikes = String(likesArray.count)
+                            requestGroup.leave()
+                        })
+                    }
+                    requestGroup.leave()
                     
-                    self.posts.append(post)
-                    self.posts.reverse()
                 }
-                
+            })
+            requestGroup.notify(queue: DispatchQueue.main) {
                 self.feedTableView.reloadData()
             }
-        })
-
+            
+        }
+        
     }
     
+    func createPost(postObject: [String: AnyObject]) -> PostModel {
+        let id = postObject["id"]
+        let createdBy = postObject["createdBy"]
+        let image = postObject["image"]
+        let storageUUID = postObject["storageUUID"]
+        let subtitle = postObject["subtitle"]
+        let timestamp = postObject["timestamp"]
+        let userUid = postObject["userUid"]
+        return PostModel(id: id as? String, createdBy: createdBy as? String, image: image as? String, storageUUID: storageUUID as? String, subtitle: subtitle as? String, timestamp: timestamp as? String, userUid: userUid as? String)
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
@@ -84,6 +108,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.postAuthor.text = post.createdBy
         cell.postSubtitle.text = post.subtitle
         cell.postImage.sd_setImage(with: URL(string: post.image!))
+        cell.likesCounter.text = "\(post.numberOfLikes ?? "0") likes"
         
         cell.tapAction = { [weak self] (cell) in
             
@@ -95,8 +120,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                     self!.ref!.child("likedBy").child(postId!).child(userId!).removeValue()
                     cell.likeButton.setImage(UIImage(named: "like_white"), for: .normal)
                 } else {
-                    let like = ["userId" : userId!]
-                    self!.ref!.child("likedBy").child(postId!).updateChildValues(like)
+                    self!.ref!.child("likedBy").child(postId!).updateChildValues([userId! : true])
                     cell.likeButton.setImage(UIImage(named: "liked_like"), for: .normal)
                 }
             })

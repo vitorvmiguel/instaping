@@ -107,6 +107,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="likeButton" destination="p7M-oq-Dx8" id="jNw-u3-niX"/>
+                                            <outlet property="likesCounter" destination="Lmb-OM-wsT" id="TZC-xb-1Tl"/>
                                             <outlet property="postAuthor" destination="KEz-dk-d0V" id="51E-ye-EVC"/>
                                             <outlet property="postImage" destination="Mqp-Ib-ufC" id="rwe-vA-QU2"/>
                                             <outlet property="postSubtitle" destination="qAf-18-wtL" id="h0b-Xq-n7X"/>

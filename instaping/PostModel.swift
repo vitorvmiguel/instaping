@@ -15,6 +15,20 @@ class PostModel {
     var subtitle: String?
     var timestamp: String?
     var userUid: String?
+    var likesArray = [String]()
+    var numberOfLikes: String?
+    
+    init(id: String?, createdBy: String?, image: String?, storageUUID: String?, subtitle: String?, timestamp: String?, userUid: String?, likesArray: [String], numberOfLikes: String?) {
+        self.id = id;
+        self.createdBy = createdBy;
+        self.image = image;
+        self.storageUUID = storageUUID;
+        self.subtitle = subtitle;
+        self.timestamp = timestamp;
+        self.userUid = userUid;
+        self.likesArray = likesArray;
+        self.numberOfLikes = numberOfLikes;
+    }
     
     init(id: String?, createdBy: String?, image: String?, storageUUID: String?, subtitle: String?, timestamp: String?, userUid: String?) {
         self.id = id;

@@ -14,6 +14,7 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var postAuthor: UILabel!
     @IBOutlet weak var postSubtitle: UILabel!
+    @IBOutlet weak var likesCounter: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
     
     var tapAction: ((FeedTableViewCell) -> Void)?
