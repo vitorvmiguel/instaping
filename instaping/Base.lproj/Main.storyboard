@@ -441,11 +441,61 @@
                     <connections>
                         <outlet property="discoverCollectionView" destination="ksU-gu-kKC" id="Hb7-Ec-4lo"/>
                         <outlet property="searchBar" destination="fgY-Xn-4qp" id="D7k-xZ-gzC"/>
+                        <segue destination="BOH-CF-TPO" kind="show" identifier="ToDetail" id="ozH-F5-pjO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="syf-rb-msc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1864.8" y="339.58020989505252"/>
+        </scene>
+        <!--Discover Detail View Controller-->
+        <scene sceneID="B0s-x6-CYf">
+            <objects>
+                <viewController id="BOH-CF-TPO" customClass="DiscoverDetailViewController" customModule="instaping" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JDT-6u-ETi"/>
+                        <viewControllerLayoutGuide type="bottom" id="8Yy-y6-hEK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="urC-og-y3l">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BgY-P5-0XP">
+                                <rect key="frame" x="0.0" y="106" width="375" height="375"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="BgY-P5-0XP" secondAttribute="height" multiplier="1:1" id="AIA-1D-iK9"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ic-Mg-ES0">
+                                <rect key="frame" x="279" y="72" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="kfo-Oe-XhP"/>
+                                    <constraint firstAttribute="height" constant="30" id="s7U-ac-MTd"/>
+                                </constraints>
+                                <state key="normal" title="Follow"/>
+                                <connections>
+                                    <action selector="followButtonClicked:" destination="BOH-CF-TPO" eventType="touchUpInside" id="loy-QZ-IDM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9Ic-Mg-ES0" firstAttribute="trailing" secondItem="urC-og-y3l" secondAttribute="trailingMargin" id="8XR-dB-Z9b"/>
+                            <constraint firstItem="BgY-P5-0XP" firstAttribute="centerX" secondItem="urC-og-y3l" secondAttribute="centerX" id="Ke4-Z9-6ml"/>
+                            <constraint firstItem="BgY-P5-0XP" firstAttribute="leading" secondItem="urC-og-y3l" secondAttribute="leading" id="PZi-yl-lXw"/>
+                            <constraint firstItem="9Ic-Mg-ES0" firstAttribute="top" secondItem="JDT-6u-ETi" secondAttribute="bottom" constant="8" id="bbb-d5-iG4"/>
+                            <constraint firstItem="BgY-P5-0XP" firstAttribute="top" secondItem="JDT-6u-ETi" secondAttribute="bottom" constant="42" id="i1s-Dn-rVi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="followButton" destination="9Ic-Mg-ES0" id="BSr-Wi-LFB"/>
+                        <outlet property="postImage" destination="BgY-P5-0XP" id="ZRR-n6-Vau"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qox-9f-P7h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2604" y="339.58020989505252"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="BbQ-4p-GH6">
@@ -484,7 +534,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="center" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="e0f-bz-9uO">
                                 <rect key="frame" x="22.5" y="326" width="330" height="35"/>
@@ -610,7 +660,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="center" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="2ST-qa-hx6">
                                 <rect key="frame" x="22.5" y="326" width="330" height="35"/>

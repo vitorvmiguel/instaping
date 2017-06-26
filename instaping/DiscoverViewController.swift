@@ -38,8 +38,8 @@ class DiscoverViewController: UIViewController, UICollectionViewDataSource, UICo
         discoverCollectionView.collectionViewLayout = customImageFlowLayout
         discoverCollectionView.backgroundColor = .black
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DiscoverViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
+        //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DiscoverViewController.dismissKeyboard))
+        //view.addGestureRecognizer(tap)
     }
 
     func dismissKeyboard() {
@@ -108,4 +108,19 @@ class DiscoverViewController: UIViewController, UICollectionViewDataSource, UICo
         
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let post = posts[indexPath.item]
+        performSegue(withIdentifier: "ToDetail", sender: post)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ToDetail" {
+            if let dest = segue.destination as? DiscoverDetailViewController,
+                let post = sender as? PostModel {
+                dest.post = post
+            }
+        }
+    }
+    
 }

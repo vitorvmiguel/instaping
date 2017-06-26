@@ -24,6 +24,8 @@
 		36D4CCA11EF7E073005AC121 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D4CCA01EF7E073005AC121 /* ImageCollectionViewCell.swift */; };
 		36D4CCA31EF7EBB2005AC121 /* CustomCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D4CCA21EF7EBB2005AC121 /* CustomCollectionViewFlowLayout.swift */; };
 		36D8226D1EF2A1C500EC1A4E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36D8226C1EF2A1C500EC1A4E /* GoogleService-Info.plist */; };
+		36F111D81F010B160072ED83 /* DiscoverDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F111D71F010B160072ED83 /* DiscoverDetailViewController.swift */; };
+		36F111DA1F0131AA0072ED83 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F111D91F0131AA0072ED83 /* UserModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		36D4CCA01EF7E073005AC121 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		36D4CCA21EF7EBB2005AC121 /* CustomCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		36D8226C1EF2A1C500EC1A4E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		36F111D71F010B160072ED83 /* DiscoverDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverDetailViewController.swift; sourceTree = "<group>"; };
+		36F111D91F0131AA0072ED83 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		45C0FFFCD5575D7F513297CA /* Pods-instaping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instaping.release.xcconfig"; path = "Pods/Target Support Files/Pods-instaping/Pods-instaping.release.xcconfig"; sourceTree = "<group>"; };
 		7F4BD982B93707E938628455 /* Pods-instaping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instaping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-instaping/Pods-instaping.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,11 +96,13 @@
 				3614FB851ECDED7200C3EAB2 /* FeedViewController.swift */,
 				362BA8371EDC2EB200B3973D /* FeedTableViewCell.swift */,
 				3614FB971ECDFC0900C3EAB2 /* DiscoverViewController.swift */,
+				36F111D71F010B160072ED83 /* DiscoverDetailViewController.swift */,
 				36D4CCA01EF7E073005AC121 /* ImageCollectionViewCell.swift */,
 				36D4CCA21EF7EBB2005AC121 /* CustomCollectionViewFlowLayout.swift */,
 				3614FB871ECDED7200C3EAB2 /* CameraViewController.swift */,
 				3614FB991ECDFC3900C3EAB2 /* ProfileViewController.swift */,
 				369FCC4B1EFB2447007ED07B /* PostModel.swift */,
+				36F111D91F0131AA0072ED83 /* UserModel.swift */,
 				3614FB891ECDED7200C3EAB2 /* Main.storyboard */,
 				3614FB8C1ECDED7200C3EAB2 /* Assets.xcassets */,
 				3614FB8E1ECDED7200C3EAB2 /* LaunchScreen.storyboard */,
@@ -262,7 +268,9 @@
 				3662AD361EF019AB00C77925 /* SignUpViewController.swift in Sources */,
 				36D4CCA31EF7EBB2005AC121 /* CustomCollectionViewFlowLayout.swift in Sources */,
 				362BA8381EDC2EB200B3973D /* FeedTableViewCell.swift in Sources */,
+				36F111DA1F0131AA0072ED83 /* UserModel.swift in Sources */,
 				3614FB841ECDED7200C3EAB2 /* AppDelegate.swift in Sources */,
+				36F111D81F010B160072ED83 /* DiscoverDetailViewController.swift in Sources */,
 				3614FB9A1ECDFC3900C3EAB2 /* ProfileViewController.swift in Sources */,
 				36D4CCA11EF7E073005AC121 /* ImageCollectionViewCell.swift in Sources */,
 				3614FB981ECDFC0900C3EAB2 /* DiscoverViewController.swift in Sources */,
