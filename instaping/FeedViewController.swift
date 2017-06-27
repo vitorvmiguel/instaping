@@ -94,6 +94,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         let userUid = postObject["userUid"]
         return PostModel(id: id as? String, createdBy: createdBy as? String, image: image as? String, storageUUID: storageUUID as? String, subtitle: subtitle as? String, timestamp: timestamp as? String, userUid: userUid as? String)
     }
+    
+    func getFollowers() {
+//        self.ref?.child("users").observe(.value, with: {(snapshot) in
+//            })
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count

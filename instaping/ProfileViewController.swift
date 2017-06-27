@@ -52,6 +52,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         userImageCollection.delegate = self
         
         loadImage()
+        getFollowers()
         
         customImageFlowLayout = CustomCollectionViewFlowLayout()
         userImageCollection.collectionViewLayout = customImageFlowLayout
@@ -59,21 +60,13 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func loadImage(){
-        self.ref?.child("posts").queryOrdered(byChild: "timestamp").observe(.value, with: { (snapshot) in
+        self.ref?.child("posts").queryOrdered(byChild: "userUid").queryEqual(toValue: userUid!).observe(.value, with: { (snapshot) in
             if snapshot.childrenCount > 0 {
                 self.posts.removeAll()
-                
+        
                 for posts in snapshot.children.allObjects as! [DataSnapshot] {
                     let postObject = posts.value as! [String : AnyObject]
-                    let id = postObject["id"]
-                    let createdBy = postObject["createdBy"]
-                    let image = postObject["image"]
-                    let storageUUID = postObject["storageUUID"]
-                    let subtitle = postObject["subtitle"]
-                    let timestamp = postObject["timestamp"]
-                    let userUid = postObject["userUid"]
-                    
-                    let post = PostModel(id: id as? String, createdBy: createdBy as? String, image: image as? String, storageUUID: storageUUID as? String, subtitle: subtitle as? String, timestamp: timestamp as? String, userUid: userUid as? String)
+                    let post = self.createPost(postObject: postObject)
                     
                     self.posts.append(post)
                     self.posts.reverse()
@@ -82,6 +75,23 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
                 self.userImageCollection.reloadData()
             }
         })
+    }
+    
+    func getFollowers(){
+        self.ref?.child("follows").queryOrderedByKey().queryEqual(toValue: userUid!).observe(.value, with: { (snapshot) in
+            print("\(snapshot) follows")
+        })
+    }
+    
+    func createPost(postObject: [String: AnyObject]) -> PostModel {
+        let id = postObject["id"]
+        let createdBy = postObject["createdBy"]
+        let image = postObject["image"]
+        let storageUUID = postObject["storageUUID"]
+        let subtitle = postObject["subtitle"]
+        let timestamp = postObject["timestamp"]
+        let userUid = postObject["userUid"]
+        return PostModel(id: id as? String, createdBy: createdBy as? String, image: image as? String, storageUUID: storageUUID as? String, subtitle: subtitle as? String, timestamp: timestamp as? String, userUid: userUid as? String)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

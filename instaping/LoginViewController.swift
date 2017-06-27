@@ -53,9 +53,7 @@ class LoginViewController: UIViewController {
                 let ref : DatabaseReference = Database.database().reference()
                 let uid = user?.uid as String!
                 let photoURL : String = (user?.photoURL?.absoluteString)!
-                ref.child("users").child(uid!).setValue(["name": user?.displayName!, "photoURL": photoURL])
-                ref.child("followedBy").child(uid!).setValue([uid! : uid!])
-                ref.child("follows").child(uid!).setValue([uid! : uid!])
+                ref.child("users").child(uid!).setValue(["name": user?.displayName!, "photoURL": photoURL, "userUid": uid!])
             }
         }
     }

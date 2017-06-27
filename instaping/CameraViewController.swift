@@ -24,7 +24,6 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     var imagePicker: UIImagePickerController!
     var uuid = NSUUID().uuidString
     var refPosts : DatabaseReference!
-    var refLikes : DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +36,6 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         
         self.refPosts = Database.database().reference().child("posts")
-        self.refLikes = Database.database().reference().child("likedBy")
     }
     
     func dismissKeyboard() {
@@ -167,12 +165,11 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
                     let photoPost = ["id" : key,"image" : imageURL!, "createdBy" : Auth.auth().currentUser!.displayName!, "userUid" : uid!, "storageUUID": self.uuid, "subtitle" : self.newPhotoSubtitle.text, "timestamp": ServerValue.timestamp()] as [String : Any]
                     
                     self.refPosts.child(key).setValue(photoPost)
-                    self.refLikes.child(key).setValue([key : key])
                     
                     self.newPhotoImagePreview.image = UIImage(named: "")
                     self.newPhotoSubtitle.text = "Type your subtitle..."
                     self.newPhotoUploadButton.isEnabled = false
-                    self.tabBarController?.selectedIndex = 0
+                    self.tabBarController?.selectedIndex = 3
                     
                 }
             })
