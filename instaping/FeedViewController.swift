@@ -43,11 +43,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func getPostsFromServer() {
-        let dispatchQueue = DispatchQueue(label: "fbQ")
-        dispatchQueue.async {
-
-            let requestGroup = DispatchGroup()
-            requestGroup.enter()
             self.ref?.child("posts").queryOrdered(byChild: "timestamp").observe(.value, with: { (snapshot) in
                 if snapshot.childrenCount > 0 {
                     self.posts.removeAll()
@@ -61,7 +56,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                     }
                     for post in self.posts {
                         var likesArray = [String]()
-                        requestGroup.enter()
                         self.ref?.child("likedBy").child(post.id!).observeSingleEvent(of: .value, with: { (snapshot) in
                             likesArray.removeAll()
                             for likes in snapshot.children.allObjects as! [DataSnapshot] {
@@ -69,18 +63,13 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                             }
                             post.likesArray = likesArray
                             post.numberOfLikes = String(likesArray.count)
-                            requestGroup.leave()
+
                         })
                     }
-                    requestGroup.leave()
-                    
+                    self.feedTableView.reloadData()
                 }
             })
-            requestGroup.notify(queue: DispatchQueue.main) {
-                self.feedTableView.reloadData()
-            }
-            
-        }
+        
         
     }
     
@@ -94,11 +83,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         let userUid = postObject["userUid"]
         return PostModel(id: id as? String, createdBy: createdBy as? String, image: image as? String, storageUUID: storageUUID as? String, subtitle: subtitle as? String, timestamp: timestamp as? String, userUid: userUid as? String)
     }
-    
-    func getFollowers() {
-//        self.ref?.child("users").observe(.value, with: {(snapshot) in
-//            })
-    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
@@ -111,7 +95,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         post = posts[indexPath.row]
         
         let cell = feedTableView.dequeueReusableCell(withIdentifier: "FeedPostCell", for: indexPath) as! FeedTableViewCell
-        
+
         cell.postAuthor.text = post.createdBy
         cell.postSubtitle.text = post.subtitle
         cell.postImage.sd_setImage(with: URL(string: post.image!))

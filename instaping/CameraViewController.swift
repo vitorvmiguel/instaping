@@ -169,7 +169,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
                     self.newPhotoImagePreview.image = UIImage(named: "")
                     self.newPhotoSubtitle.text = "Type your subtitle..."
                     self.newPhotoUploadButton.isEnabled = false
-                    self.tabBarController?.selectedIndex = 3
+                    self.tabBarController?.selectedIndex = 0
                     
                 }
             })
